@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Love ❤️</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    height: 100%;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    overflow-x: hidden;
+  }
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: linear-gradient(135deg, #ffb6c1, #ff69b4, #ff1493);
+    background-size: 400% 400%;
+    animation: gradientShift 10s ease infinite;
+  }
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .page {
+    display: none;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+    padding: 20px;
+  }
+  .page.active { display: block; animation: fadeIn 1s ease-in; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* Floating background decorations (flowers or hearts) */
+  .float-layer {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .float-item {
+    position: absolute;
+    bottom: -10%;
+    animation: floatUp linear infinite;
+    opacity: 0.9;
+  }
+  @keyframes floatUp {
+    from { transform: translateY(0) rotate(0deg); opacity: 1; }
+    to { transform: translateY(-115vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* Card style for password / message boxes */
+  .card {
+    background: rgba(255,255,255,0.95);
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    width: 340px;
+    max-width: 90vw;
+    margin: 0 auto;
+  }
+  .card h2 { color: #ff1493; margin-bottom: 20px; }
+  .card input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ff69b4;
+    border-radius: 10px;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+    margin-bottom: 15px;
+  }
+  .btn {
+    background: #ff1493;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .btn:hover { background: #d10f7a; }
+  .errorMsg {
+    color: #b30000;
+    margin-top: 10px;
+    font-size: 14px;
+    min-height: 18px;
+  }
+
+  /* Text pages */
+  .textPage {
+    color: white;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .textPage h1 {
+    font-size: 2.6em;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    margin-bottom: 10px;
+  }
+  .textPage p {
+    font-size: 1.3em;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+    line-height: 1.6;
+  }
+  .heart {
+    font-size: 3em;
+    animation: beat 1.2s infinite;
+    display: inline-block;
+  }
+  @keyframes beat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+  .arabic {
+    direction: rtl;
+    font-size: 1.6em;
+    line-height: 2;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+<div class="float-layer" id="floatLayer1"></div>
+
+<!-- PAGE 1: Welcome with flowers -->
+<div class="page active" id="page1">
+  <div class="textPage">
+    <div class="heart">🌸</div>
+    <h1>My Love ❤️</h1>
+    <p>I made something just for you...</p>
+    <button class="btn" onclick="goTo('page2')">Open 💌</button>
+  </div>
+</div>
+
+<!-- PAGE 2: Password "bobyy" -->
+<div class="page" id="page2">
+  <div class="card">
+    <h2>🔒💕 Enter Password 💕🔒</h2>
+    <input type="password" id="pwInput1" placeholder="❤️ Password ❤️">
+    <br>
+    <button class="btn" type="button" id="unlockBtn1">Unlock 💖</button>
+    <div class="errorMsg" id="errorMsg1"></div>
+  </div>
+</div>
+
+<!-- PAGE 2.5: Love message, then continue -->
+<div class="page" id="page2b">
+  <div class="textPage">
+    <div class="heart">❤️</div>
+    <h1>I Love You Boby</h1>
+    <p>Every moment with you feels like magic. You are my favorite person, my best friend, and my greatest love. Thank you for being you. 💕</p>
+    <p style="font-style: italic;">From Dody 💌</p>
+    <br>
+    <button class="btn" onclick="goTo('page3')">Continue 🌷</button>
+  </div>
+</div>
+
+<!-- PAGE 3: Password "may2" -->
+<div class="page" id="page3">
+  <div class="card">
+    <h2>🌷 One More Secret 🌷</h2>
+    <p style="color:#555; font-size:14px; margin-top:-10px;">Hint: the day we first talked</p>
+    <input type="password" id="pwInput2" placeholder="❤️ Password ❤️">
+    <br>
+    <button class="btn" type="button" id="unlockBtn2">Unlock 💖</button>
+    <div class="errorMsg" id="errorMsg2"></div>
+  </div>
+</div>
+
+<!-- PAGE 4: Final Arabic message -->
+<div class="page" id="page4">
+  <div class="textPage">
+    <div class="heart">💞</div>
+    <p class="arabic">بحبك يا حبيبتي<br>و يارب نكمل عمرنا كله مع بعض<br>انا عشت احلى ايام حياتي معاكي</p>
+  </div>
+</div>
+
+<div class="float-layer" id="heartsContainer"></div>
+
+<script>
+  function goTo(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  // ---- Password 1: bobyy ----
+  const correctPassword1 = "bobyy";
+  function checkPassword1() {
+    const input = document.getElementById('pwInput1').value.trim().toLowerCase();
+    const errorMsg = document.getElementById('errorMsg1');
+    if (input === correctPassword1) {
+      goTo('page2b');
+    } else {
+      errorMsg.textContent = "Wrong password, try again 💔";
+      document.getElementById('pwInput1').value = '';
+    }
+  }
+  document.getElementById('unlockBtn1').addEventListener('click', checkPassword1);
+  document.getElementById('pwInput1').addEventListener('keyup', e => { if (e.key === 'Enter') checkPassword1(); });
+
+  // ---- Password 2: may2 ----
+  const correctPassword2 = "may2";
+  function checkPassword2() {
+    const input = document.getElementById('pwInput2').value.trim().toLowerCase();
+    const errorMsg = document.getElementById('errorMsg2');
+    if (input === correctPassword2) {
+      goTo('page4');
+      startHearts();
+    } else {
+      errorMsg.textContent = "Wrong password, try again 💔";
+      document.getElementById('pwInput2').value = '';
+    }
+  }
+  document.getElementById('unlockBtn2').addEventListener('click', checkPassword2);
+  document.getElementById('pwInput2').addEventListener('keyup', e => { if (e.key === 'Enter') checkPassword2(); });
+
+  // ---- Floating flowers on page 1 ----
+  const flowers = ['🌸','🌷','🌺','🌹','🌼'];
+  const flowerLayer = document.getElementById('floatLayer1');
+  setInterval(() => {
+    const el = document.createElement('span');
+    el.className = 'float-item';
+    el.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.fontSize = (Math.random() * 20 + 20) + 'px';
+    el.style.animationDuration = (Math.random() * 4 + 5) + 's';
+    flowerLayer.appendChild(el);
+    setTimeout(() => el.remove(), 10000);
+  }, 500);
+
+  // ---- Floating hearts for final page ----
+  function startHearts() {
+    const container = document.getElementById('heartsContainer');
+    setInterval(() => {
+      const heart = document.createElement('span');
+      heart.className = 'float-item';
+      heart.textContent = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+      heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+      container.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }, 400);
+  }
+</script>
+
+</body>
+</html>
